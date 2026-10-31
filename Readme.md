@@ -127,9 +127,9 @@ AI mengembalikan Output di mana ia berhalusinasi menambahkan informasi di luar t
 Teks input terlalu pendek dan kekurangan konteks, sementara constraint prompt di awal tidak secara tegas melarang AI menggunakan pengetahuan di luar (eksternal) dari teks input.
 
 **Apa yang kalian ubah pada prompt / constraint / kode?**
-1. Menambahkan validasi `min_length=20` di Pydantic agar menolak teks yang terlalu singkat.
+1. Menambahkan validasi di Pydantic agar menolak teks yang terlalu singkat.
 2. Memperbarui constraint prompt menjadi: "HANYA gunakan informasi yang secara eksplisit ada pada teks input. DILARANG MENAMBAHKAN ATAU MENGARANG FAKTA LUAR".
-3. Menurunkan `temperature` ke `0.2` agar AI tidak terlalu imajinatif.
+3. Menurunkan temperature ke 2 agar AI tidak terlalu imajinatif.
 
 **Output setelah diperbaiki:**
 Teks yang kurang dari 20 karakter otomatis ditolak dengan status HTTP 422. Jika teksnya cukup panjang namun spesifik, AI merespons sangat faktual dan hanya mengekstrak fakta asli tanpa mengarang.
